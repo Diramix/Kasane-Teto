@@ -1,0 +1,12 @@
+{
+  "name": "Kasane Teto!",
+  "image": "image.png",
+  "banner": "banner.png",
+  "author": ["diram1x"],
+  "description": "Kasane Teto: Project Zomboid",
+  "type": "theme",
+  "version": "04.01",
+  "css": "style.css",
+  "script": "script.js",
+  "tags": ["Anime", "Hatsune Miku", "Vocaloid"]
+}
