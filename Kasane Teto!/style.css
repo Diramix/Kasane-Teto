@@ -33,7 +33,7 @@
 /*--------------------------------------------*/
 :root {
 	--main-color: #D46A83;
-	--light-main-color: #AEFFFF;
+	--light-main-color: #FF9FC4;
 	--basic-color: #854462;
 	--hatsune-light: #0b0c0c;
 	--font-color: #2A2433;
@@ -663,12 +663,12 @@ section.PlayerBar_root__cXUnU {
 }
 
 [data-test-id="MY_VIBE_PLAY_BUTTON"] {
-	background: var(--miku-color);
+	background: #FFDB74;
 	color: #000;
 }
 
 [data-test-id="MY_VIBE_PLAY_BUTTON"]:hover {
-	background: var(--miku-color);
+	background: #FFDB74;
 	color: #000;
 	filter: brightness(1.1);
 }
@@ -751,9 +751,7 @@ section.PlayerBar_root__cXUnU {
 	margin-bottom: -0px;
 	font-family: "PlaywriteI";
 	font-size: 30px;
-	white-space: nowrap;
 
-	text-overflow: ellipsis; /* или 'ellipsis' для троеточия */	
 }
 
 .frsl0v3Y0m7IvVEtEnT8,
@@ -1403,6 +1401,34 @@ div.PlayerBarDesktop_meta__6sm58 > div > span {
 	pointer-events: none;
 }
 /*--------------------------------------------*/
+
+.NavbarDesktop_logo__Z4jGx * .frsl0v3Y0m7IvVEtEnT8 {
+	background: url("http://127.0.0.1:2007/assets/spinner-logo.png");
+	background-color: var(--main-color);
+	background-size: 85%;
+	background-position: center;
+	background-repeat: no-repeat;
+	color: #0000;
+	animation: spin 6s ease-in-out infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(360deg);
+    }
+    25% {
+        transform: rotate(2160deg);
+    }
+    50% {
+        transform: rotate(4320deg);
+    }
+    75% {
+        transform: rotate(2160deg);
+    }
+    100% {
+        transform: rotate(4320deg);
+    }
+}
 
 /*лоКАЛизация*/
 /*--------------------------------------------*/

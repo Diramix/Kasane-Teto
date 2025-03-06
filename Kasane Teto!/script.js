@@ -298,44 +298,7 @@ async function setSettings(newSettings) {
         .AssetsImages:after {
             display: ${newSettings['Fullscreen'].toggleFullscreenMikuXD ? 'block' : 'none'} !important;
         }
-    `;    
-
-    // Open Blocker
-    const modules = [
-        "donations",
-        "concerts",
-        "trailers",
-        "betabutton",
-        "relevantnow",
-        "artistrecommends",
-        "barbelow"
-    ];
-
-    modules.forEach(module => {
-        const settingKey = `OB${module.charAt(0) + module.slice(1)}`;
-        const cssId = `openblocker-${module}`;
-        const existingLink = document.getElementById(cssId);
-        
-        if (Object.keys(settings).length === 0 || settings['Open-Blocker'][settingKey] !== newSettings['Open-Blocker'][settingKey]) {
-            if (newSettings['Open-Blocker'][settingKey]) {
-                if (existingLink) {
-                    existingLink.remove();
-                }
-            } else {
-                if (!existingLink) {
-                    fetch(`https://raw.githubusercontent.com/Open-Blocker-FYM/Open-Blocker/refs/heads/main/blocker-css/${module}.css`)
-                        .then(response => response.text())
-                        .then(css => {
-                            const style = document.createElement("style");
-                            style.id = cssId;
-                            style.textContent = css;
-                            document.head.appendChild(style);
-                        })
-                        .catch(error => console.error(`Ошибка загрузки CSS: ${module}`, error));
-                }
-            }
-        }
-    });
+    `;
 
     // Auto Play
     if (newSettings['Developer'].devAutoPlayOnStart && !window.hasRun) {
@@ -400,7 +363,20 @@ function updateText() {
 
 /*лоКАЛизация*/
 /*--------------------------------------------*/
+function getRandomElement(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
 const textChanges = [
+    { sel: '.NavbarDesktop_navigation__dLUGW *', changes: [
+        { st: 'Поиск', rt: 'Розыск' },
+        { st: 'Главная', rt: 'БАЗА' },
+        { st: 'Подкасты и книги', rt: ['Colorful x Sexy', 'Colorful x Melody'] },
+        { st: 'Коллекция', rt: 'Склад' },
+    ]},
+    { sel: '.VibeBlock_controls__BpDFL *', changes: [
+        { st: 'Моя волна', rt: ['teto territory', 'Minecraft Splash', '0401', 'I say love', 'Triple Baka!!!', 'Poteto', 'u― papaupapau — paupapa — !', 'PulseSync🗿', 'Включи эквалайзер...', 'Tetoris', 'Meme', 'F₂O'] },
+    ]},
     { sel: '[data-test-id="QUALITY_SETTINGS_CONTEXT_MENU"] *', changes: [
         { st: 'Настройки звука', rt: 'Настройки банки' },
         { st: 'Превосходное', rt: 'TETO, TETO BEAM' },
@@ -419,10 +395,8 @@ function replaceTextInElements() {
         elements.forEach(element => {
             changes.forEach(({ st, rt }) => {
                 element.childNodes.forEach(child => {
-                    if (child.nodeType === 3) {  // Проверка, что это текстовый узел
-                        if (child.textContent.includes(st)) {
-                            child.textContent = child.textContent.replace(st, rt);
-                        }
+                    if (child.nodeType === 3 && child.textContent.includes(st)) {
+                        child.textContent = Array.isArray(rt) ? child.textContent.replace(st, getRandomElement(rt)) : child.textContent.replace(st, rt);
                     }
                 });
             });
@@ -430,3 +404,10 @@ function replaceTextInElements() {
     });
 }
 /*--------------------------------------------*/
+
+document.addEventListener('click', function(event) {
+    let target = event.target.closest('[aria-label="Выключить эквалайзер"]');
+    if (target) {
+        window.open('https://www.youtube.com/watch?v=b3tTC_TkLyE', '_blank');
+    }
+});
