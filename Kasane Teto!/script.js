@@ -4,7 +4,6 @@ setInterval(() => {
     updateBackgroundImage();
     updateVibeBackgroundImage();
     coverAndAssetsImagesElements();
-    replaceTextInElements();
     updateText();
 }, 300);
 /*--------------------------------------------*/
@@ -83,7 +82,7 @@ function updateVibeBackgroundImage() {
     });
 
     const targetElement = document.querySelector('.MainPage_vibe__XEBbh');
-    if (targetElement) {
+    if (targetElement && isElementInViewport(targetElement)) {
         targetElement.style.position = 'relative';
         targetElement.style.overflow = 'hidden';
 
@@ -116,7 +115,7 @@ function updateVibeBackgroundImage() {
         newBlurElement.style.width = '100%';
         newBlurElement.style.height = '100%';
         newBlurElement.style.background = `url(${imgBackground}) center center / cover no-repeat`;
-        newBlurElement.style.backgroundColor = '#26F4FE';
+        newBlurElement.style.backgroundColor = '#D46A83';
         newBlurElement.style.filter = 'blur(0px) brightness(0.5)';
         newBlurElement.style.zIndex = '1';
         targetElement.appendChild(newBlurElement);
@@ -127,7 +126,12 @@ function updateVibeBackgroundImage() {
             child.style.zIndex = '3';
         });
     }
-};
+}
+
+function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+}
 /*--------------------------------------------*/
 
 // CoverImage для исправления багов с обложкой в фуллскрине
@@ -363,51 +367,57 @@ function updateText() {
 
 /*лоКАЛизация*/
 /*--------------------------------------------*/
-function getRandomElement(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-}
+async function autoReplaceText() {
+    async function loadTranslations() {
+        try {
+            const response = await fetch('http://127.0.0.1:2007/assets/lang.json');
+            if (!response.ok) throw new Error('Ошибка загрузки файла');
+            const data = await response.json();
+            localStorage.setItem('translations', JSON.stringify(data));
+            return data;
+        } catch (error) {
+            console.error(error);
+            return JSON.parse(localStorage.getItem('translations')) || { textChanges: [] };
+        }
+    }
 
-const textChanges = [
-    { sel: '.NavbarDesktop_navigation__dLUGW *', changes: [
-        { st: 'Поиск', rt: 'Розыск' },
-        { st: 'Главная', rt: 'БАЗА' },
-        { st: 'Подкасты и книги', rt: ['Colorful x Sexy', 'Colorful x Melody'] },
-        { st: 'Коллекция', rt: 'Склад' },
-    ]},
-    { sel: '.VibeBlock_controls__BpDFL *', changes: [
-        { st: 'Моя волна', rt: ['teto territory', 'Minecraft Splash', '0401', 'I say love', 'Triple Baka!!!', 'Poteto', 'u― papaupapau — paupapa — !', 'PulseSync🗿', 'Включи эквалайзер...', 'Tetoris', 'Meme', 'F₂O'] },
-    ]},
-    { sel: '[data-test-id="QUALITY_SETTINGS_CONTEXT_MENU"] *', changes: [
-        { st: 'Настройки звука', rt: 'Настройки банки' },
-        { st: 'Превосходное', rt: 'TETO, TETO BEAM' },
-        { st: 'Оптимальное', rt: 'KOTLETETO' },
-        { st: 'Экономичное', rt: 'POTETO' },
-        { st: 'Эквалайзер', rt: 'Хардбасс бассы' },
-    ]},
-    { sel: '.ReleaseNotesModal_root__RSw1p *', changes: [
-        { st: 'Что нового?', rt: 'Апдейтов не будет. В Яндексе все стали анимешниками и фанатами ТЕТООООООООООО...' },
-    ]}
-];
+    function getRandomItem(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    }
 
-function replaceTextInElements() {
-    textChanges.forEach(({ sel, changes }) => {
-        const elements = document.querySelectorAll(sel);
-        elements.forEach(element => {
-            changes.forEach(({ st, rt }) => {
-                element.childNodes.forEach(child => {
-                    if (child.nodeType === 3 && child.textContent.includes(st)) {
-                        child.textContent = Array.isArray(rt) ? child.textContent.replace(st, getRandomElement(rt)) : child.textContent.replace(st, rt);
-                    }
+    function applyTextChanges() {
+        const { textChanges } = JSON.parse(localStorage.getItem('translations')) || { textChanges: [] };
+        textChanges.forEach(({ sel, changes }) => {
+            sel.forEach(selector => {
+                document.querySelectorAll(selector).forEach(element => {
+                    changes.forEach(({ st, rt }) => {
+                        element.childNodes.forEach(child => {
+                            if (child.nodeType === 3 && child.textContent.includes(st)) {
+                                child.textContent = Array.isArray(rt) ? child.textContent.replace(st, getRandomItem(rt)) : child.textContent.replace(st, rt);
+                            }
+                        });
+                    });
                 });
             });
         });
-    });
+    }
+
+    const observer = new MutationObserver(() => applyTextChanges());
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    const translations = await loadTranslations();
+    localStorage.setItem('translations', JSON.stringify(translations));
+    applyTextChanges();
 }
+autoReplaceText();
 /*--------------------------------------------*/
 
+// HARDBASS TETORIS
+/*--------------------------------------------*/
 document.addEventListener('click', function(event) {
     let target = event.target.closest('[aria-label="Выключить эквалайзер"]');
     if (target) {
         window.open('https://www.youtube.com/watch?v=b3tTC_TkLyE', '_blank');
     }
 });
+/*--------------------------------------------*/
