@@ -1,10 +1,10 @@
-![1](https://github.com/user-attachments/assets/0dcab9cc-47ce-47d3-b13f-e288f5f32c84)
+![RickroTeto](https://github.com/user-attachments/assets/e710d5e9-7a66-4848-b503-63678ae4aba9)
 ![License](https://img.shields.io/github/license/Diramix/Spotify-Music.svg?style=for-the-badge)
 
 ### Powered by
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" height="40px" width="40px" /></a><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" height="40px" width="40px" /></a>
     
-# Vocaloid Miku!
+# Kasane Teto!
 
 ## Стол контента
 - [Ссылки](#Ссылки)
