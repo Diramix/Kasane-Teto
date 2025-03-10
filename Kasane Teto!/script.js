@@ -5,6 +5,7 @@ setInterval(() => {
     updateVibeBackgroundImage();
     coverAndAssetsImagesElements();
     updateText();
+    enchancedTracks();
 }, 300);
 /*--------------------------------------------*/
 
@@ -87,8 +88,22 @@ function updateVibeBackgroundImage() {
         targetElement.style.overflow = 'hidden';
 
         let blurElement = targetElement.querySelector('.blur-element');
-        if (blurElement) {
-            targetElement.removeChild(blurElement);
+        if (!blurElement) {
+            blurElement = document.createElement('div');
+            blurElement.classList.add('blur-element');
+            blurElement.style.position = 'absolute';
+            blurElement.style.top = 0;
+            blurElement.style.left = 0;
+            blurElement.style.width = '100%';
+            blurElement.style.height = '100%';
+            blurElement.style.backgroundColor = '#D46A83';
+            blurElement.style.filter = 'blur(0px) brightness(0.5)';
+            blurElement.style.zIndex = '1';
+            targetElement.appendChild(blurElement);
+        }
+        
+        if (blurElement.style.background !== `url(${imgBackground}) center center / cover no-repeat`) {
+            blurElement.style.background = `url(${imgBackground}) center center / cover no-repeat`;
         }
 
         let additionalImageElement = targetElement.querySelector('.additional-image-element');
@@ -107,23 +122,12 @@ function updateVibeBackgroundImage() {
             targetElement.appendChild(additionalImageElement);
         }
 
-        const newBlurElement = document.createElement('div');
-        newBlurElement.classList.add('blur-element');
-        newBlurElement.style.position = 'absolute';
-        newBlurElement.style.top = 0;
-        newBlurElement.style.left = 0;
-        newBlurElement.style.width = '100%';
-        newBlurElement.style.height = '100%';
-        newBlurElement.style.background = `url(${imgBackground}) center center / cover no-repeat`;
-        newBlurElement.style.backgroundColor = '#D46A83';
-        newBlurElement.style.filter = 'blur(0px) brightness(0.5)';
-        newBlurElement.style.zIndex = '1';
-        targetElement.appendChild(newBlurElement);
-
         const childElements = targetElement.querySelectorAll(':scope > *:not(.additional-image-element):not(.blur-element)');
         childElements.forEach(child => {
-            child.style.position = 'relative';
-            child.style.zIndex = '3';
+            if (child.style.zIndex !== '3') {
+                child.style.position = 'relative';
+                child.style.zIndex = '3';
+            }
         });
     }
 }
@@ -345,7 +349,7 @@ const translitMap = {
     'И': 'I', 'Й': 'Y', 'К': 'K', 'Л': 'L', 'М': 'M', 'Н': 'N', 'О': 'O', 'П': 'P', 'Р': 'R',
     'С': 'S', 'Т': 'T', 'У': 'U', 'Ф': 'F', 'Х': 'Kh', 'Ц': 'Ts', 'Ч': 'Ch', 'Ш': 'Sh', 'Щ': 'Shch',
     'Ы': 'Y', 'Э': 'E', 'Ю': 'Yu', 'Я': 'Ya', 'Ь': "'", 'ь': "'",
-    'ъ': '',  // Удаляем "ъ"
+    'ъ': '',
     'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'e', 'ж': 'zh', 'з': 'z',
     'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r',
     'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'kh', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'shch',
@@ -353,7 +357,6 @@ const translitMap = {
 };
 
 function transliterate(text) {
-    // Удаляем символ "ъ" из текста перед преобразованием
     text = text.replace(/ъ/g, '');
     return text.replace(/\([^)]*\)/g, '').split('').map(char => translitMap[char] || char).join('');
 }
@@ -368,16 +371,20 @@ function updateText() {
 /*лоКАЛизация*/
 /*--------------------------------------------*/
 async function autoReplaceText() {
+    const cacheKey = 'translations';
+    let translations = JSON.parse(localStorage.getItem(cacheKey)) || { textChanges: [] };
+    const modifiedNodes = new WeakSet();
+
     async function loadTranslations() {
         try {
             const response = await fetch('http://127.0.0.1:2007/assets/lang.json');
-            if (!response.ok) throw new Error('Ошибка загрузки файла');
+            if (!response.ok) throw new Error('Ошибка загрузки');
             const data = await response.json();
-            localStorage.setItem('translations', JSON.stringify(data));
+            localStorage.setItem(cacheKey, JSON.stringify(data));
             return data;
         } catch (error) {
             console.error(error);
-            return JSON.parse(localStorage.getItem('translations')) || { textChanges: [] };
+            return translations;
         }
     }
 
@@ -385,39 +392,111 @@ async function autoReplaceText() {
         return arr[Math.floor(Math.random() * arr.length)];
     }
 
+    function replaceTextInNode(node, changes) {
+        let text = node.textContent;
+        changes.forEach(({ st, rt }) => {
+            if (text.includes(st)) text = text.replaceAll(st, Array.isArray(rt) ? getRandomItem(rt) : rt);
+        });
+        if (text !== node.textContent) {
+            node.textContent = text;
+            modifiedNodes.add(node);
+        }
+    }
+
     function applyTextChanges() {
-        const { textChanges } = JSON.parse(localStorage.getItem('translations')) || { textChanges: [] };
-        textChanges.forEach(({ sel, changes }) => {
-            sel.forEach(selector => {
-                document.querySelectorAll(selector).forEach(element => {
-                    changes.forEach(({ st, rt }) => {
-                        element.childNodes.forEach(child => {
-                            if (child.nodeType === 3 && child.textContent.includes(st)) {
-                                child.textContent = Array.isArray(rt) ? child.textContent.replace(st, getRandomItem(rt)) : child.textContent.replace(st, rt);
-                            }
-                        });
-                    });
-                });
+        translations.textChanges.forEach(({ sel, changes }) => {
+            document.querySelectorAll(sel.join(',')).forEach(element => {
+                const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+                let node;
+                while ((node = walker.nextNode()) && !modifiedNodes.has(node)) {
+                    replaceTextInNode(node, changes);
+                }
             });
         });
     }
 
-    const observer = new MutationObserver(() => applyTextChanges());
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    const translations = await loadTranslations();
-    localStorage.setItem('translations', JSON.stringify(translations));
+    translations = await loadTranslations();
     applyTextChanges();
+    new MutationObserver(applyTextChanges).observe(document.body, { childList: true, subtree: true });
 }
 autoReplaceText();
 /*--------------------------------------------*/
 
-// HARDBASS TETORIS
+// Ссылко-кнопки
 /*--------------------------------------------*/
 document.addEventListener('click', function(event) {
-    let target = event.target.closest('[aria-label="Выключить эквалайзер"]');
-    if (target) {
-        window.open('https://www.youtube.com/watch?v=b3tTC_TkLyE', '_blank');
+    const actions = [
+        {
+            selector: '[aria-label="Выключить эквалайзер"]',
+            url: 'https://www.youtube.com/watch?v=b3tTC_TkLyE'
+        },
+        {
+            selector: '.ReleaseNotesModal_modalHeader__gp9SA',
+            url: 'https://www.youtube.com/watch?v=UFQ36_fOMcE'
+        }
+    ];
+
+    for (const action of actions) {
+        if (event.target.closest(action.selector)) {
+            window.open(action.url, '_blank');
+            break;
+        }
     }
 });
+/*--------------------------------------------*/
+
+// Enchanced Tracks
+/*--------------------------------------------*/
+let trackData = [];
+
+async function enchancedTracks() {
+    try {
+        const response = await fetch("http://127.0.0.1:2007/assets/effects.json");
+        if (!response.ok) throw new Error("Failed to load track data");
+        trackData = await response.json();
+    } catch (error) {}
+
+    const trackName = document.querySelector('section.PlayerBar_root__cXUnU * .Meta_title__GGBnH')?.textContent.trim();
+    const artistName = document.querySelector('section.PlayerBar_root__cXUnU * [data-test-id="SEPARATED_ARTIST_TITLE"]')?.textContent.trim();
+    const currentTimecode = document.querySelector('section.PlayerBar_root__cXUnU * [data-test-id="TIMECODE_TIME_START"]')?.textContent.trim();
+
+    const activeStyles = new Set();
+
+    trackData.forEach(({ track }) => {
+        const { title, artist, times } = track;
+        if (artistName === artist && trackName === title) {
+            times.forEach(({ tc, tcend, cssFile }) => {
+                const cssUrl = `http://127.0.0.1:2007/assets/${cssFile}.css`;
+                if (currentTimecode >= tc && currentTimecode < tcend) {
+                    activeStyles.add(cssFile);
+                    if (tc === "00:00" && !document.querySelector('section.PlayerBar_root__cXUnU * [data-test-id="PAUSE_BUTTON"]')) {
+                        return; // Не применяем стиль, если нет кнопки паузы
+                    }
+                    if (!document.querySelector(`style[data-css-file="${cssFile}"]`)) {
+                        applyStyle(cssUrl, cssFile);
+                    }
+                }
+            });
+        }
+    });
+
+    document.querySelectorAll("style[data-css-file]").forEach(styleElement => {
+        if (!activeStyles.has(styleElement.getAttribute("data-css-file"))) {
+            styleElement.remove();
+        }
+    });
+}
+
+async function applyStyle(cssUrl, cssFile) {
+    try {
+        const response = await fetch(cssUrl);
+        if (!response.ok) throw new Error("Failed to load CSS");
+        const cssText = await response.text();
+
+        const styleElement = document.createElement('style');
+        styleElement.textContent = cssText;
+        styleElement.setAttribute('data-css-file', cssFile);
+        document.head.appendChild(styleElement);
+    } catch (error) {}
+}
 /*--------------------------------------------*/

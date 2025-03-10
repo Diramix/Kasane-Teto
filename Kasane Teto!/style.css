@@ -175,6 +175,27 @@ body > div > div > div > div > section > div > div > span > span.RestrictionButt
 	color: var(--font-color);
 }
 
+.ReleaseNotesModal_modalHeader__gp9SA {
+    position: relative;
+}
+
+.ReleaseNotesModal_modalHeader__gp9SA:after {
+    display: block;
+    background-position: center;
+    background-size: cover;
+    background-image: url("http://127.0.0.1:2007/assets/diva-custom-url-test.gif");
+    content: "Нажми на гифку (1:18)";
+	font-weight: 600;
+	font-size: 20px;
+	color: #fff;
+    height: 240px;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 body > div > p {
 	visibility: hidden;
 }
@@ -903,7 +924,7 @@ body > .DevPanel_root__Gu7qn > .qU2apWBO1yyEK0lZ3lPO:hover {
 }
 
 .LikesAndHistoryItem_root__oI1gk {
-	background: #137a7f80;
+	background: var(--basic-color);
 }
 
 [data-test-id="LIKES_HISTORY_TITLE"],
@@ -1003,7 +1024,8 @@ body > .DevPanel_root__Gu7qn > .qU2apWBO1yyEK0lZ3lPO:hover {
 .PlayQueueAfterPlayingBlock_title__nS_nG,
 .PlayQueue_content__zIUvd * .Meta_artists__VnR52,
 .PlayQueueVibeBlock_vibeTitle__C5fWp,
-.ReleaseNotesModal_modalContent__g8OTu {
+.ReleaseNotesModal_modalContent__g8OTu,
+.NavbarDesktop_scrollableContainer__HLc9D:after {
 	display: none;
 }
 /*--------------------------------------------*/
@@ -1451,3 +1473,25 @@ div.PlayerBarDesktop_meta__6sm58 > div > span {
 	content: "Источник: Kasane Teto! Theme VersuЁн 04.01";
 }
 /*--------------------------------------------*/
+
+/* @keyframes slideLoop {
+    0% {
+        transform: translateX(0vw);
+    }
+    100% {
+        transform: translateX(-100vw);
+    }
+}
+
+@keyframes slideLoopContinue {
+    0% {
+        transform: translateX(100vw);
+    }
+    100% {
+        transform: translateX(0vw);
+    }
+}
+
+html {
+    animation: slideLoop 1s ease-out, slideLoopContinue 1s ease-in 1s;
+} */

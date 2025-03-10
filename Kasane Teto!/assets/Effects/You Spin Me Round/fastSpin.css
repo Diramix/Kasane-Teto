@@ -1,0 +1,15 @@
+@keyframes fastSpin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(40320deg);
+	}
+}
+
+html {
+	animation: fastSpin 14s ease-in-out;
+	background-color: #fff !important;
+	background-image: url("http://127.0.0.1:2007/assets/teto-in-the-void.gif");
+	background-repeat: repeat;
+}

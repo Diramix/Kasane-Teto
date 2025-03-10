@@ -1,0 +1,28 @@
+@keyframes rotate360 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(1440deg); }
+}
+
+@keyframes rotate360reverse {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-1440deg); }
+}
+
+html {
+    animation: 
+        rotate360 3.5s linear forwards, 
+        rotate360reverse 3.5s linear forwards 3.5s, 
+        rotate360 3.5s linear forwards 7s, 
+        rotate360reverse 3.5s linear forwards 10.5s;
+}
+
+html {
+	background-color: #fff !important;
+	background-image: 
+		url("http://127.0.0.1:2007/assets/teto-in-the-void.gif"), 
+		url("http://127.0.0.1:2007/assets/teto-in-the-void.gif");
+	background-repeat: no-repeat;
+	background-position: left bottom, right bottom;
+	background-size: auto;
+	transform: scaleX(-1);
+}

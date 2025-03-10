@@ -1,0 +1,145 @@
+/*ФОН*/
+/*--------------------------------------------*/
+.ym-dark-theme,
+.ym-light-theme {
+    --ym-background-color-primary-enabled-basic: #000;
+    --ym-controls-color-secondary-outline-selected: #000;
+    --ym-controls-color-secondary-card-enabled: #0009;
+    --ym-controls-color-secondary-card-hovered: #000;
+    --ym-background-color-primary-enabled-popover: #000;
+    --ym-background-color-primary-enabled-content: #000;
+    --ym-controls-color-primary-text-enabled: #fff;
+}
+
+body * {
+    --player-average-color-background: #000;
+}
+/*--------------------------------------------*/
+
+/*Colorful II*/
+/*--------------------------------------------*/
+body > div > p {
+    visibility: hidden;
+}
+
+body > div > p:after {
+    position: absolute;
+    visibility: visible;
+    right: 0;
+    content: "Colorful II";
+    color: rgb(255 255 255 / 100%)
+}
+/*--------------------------------------------*/
+
+/*У вас нет прав*/
+/*--------------------------------------------*/
+.CollectionPage_description__A3dny {
+    visibility: hidden;
+}
+
+.CollectionPage_description__A3dny:before {
+    visibility: visible;
+    position: relative;
+    content: "У вас нет прав";
+    color: #fff;
+    left: 0;
+    top: 0;
+}
+/*--------------------------------------------*/
+
+/*Вайб - Vibe*/
+/*--------------------------------------------*/
+.VibeAnimation_root_visible__S7kXl {
+    display: none;
+}
+
+.MainPage_vibe__XEBbh {
+    max-height: 300px;
+    min-height: 300px;
+    top: -30px;
+}
+/*--------------------------------------------*/
+
+/*Табы - Tabs*/
+/*--------------------------------------------*/
+.PlaylistFiltersTabs_filter__6P4TS,
+.SearchPage_filter__5xzTL,
+.MusicHistoryPage_tabs__v_5Zg {
+    background: 0;
+    border-width: 0;
+}
+
+.PlaylistFiltersTabs_filter__6P4TS[aria-selected="true"],
+.SearchPage_filter__5xzTL[aria-selected="true"],
+.MusicHistoryPage_tabs__v_5Zg[aria-selected="true"] {
+    background: #fff2;
+}
+/*--------------------------------------------*/
+
+/*Настройки звука*/
+/*--------------------------------------------*/
+[data-test-id="EQUALIZER_TOGGLE"] {
+    --ym-controls-color-primary-default-enabled: #fff;
+    --ym-controls-color-primary-default-hovered: #fff;
+}
+
+.EqualizerSlider_important____ilL {
+    --ym-background-color-secondary-enabled-blur: #fff;
+}
+/*--------------------------------------------*/
+
+/*Only color: #fff;*/
+/*--------------------------------------------*/
+.cE17_kCWJgx8kzQEkeVr,
+.ChangeVolume_icon__5Zv2a,
+.NavbarDesktop_logo__Z4jGx *,
+.SeparatedArtists_root_clamp__SyvjM * {
+	color: #fff;
+}
+/*--------------------------------------------*/
+
+/*Only color: #000;*/
+/*--------------------------------------------*/
+.PlayerBar_root__cXUnU,
+.FullscreenPlayerDesktopContent_root__tKNGK,
+.PlaylistFilters_filter__s_myh,
+.LikesAndHistoryItem_root__oI1gk,
+.MixCard_root__9tPLV {
+	background: #000;
+}
+/*--------------------------------------------*/
+
+/*Only border-width: 0;*/
+/*--------------------------------------------*/
+.PlayerBar_root__cXUnU,
+.Content_main__8_wIa,
+.FullscreenPlayerDesktop_important__dGfiL {
+    border-width: 0;
+}
+/*--------------------------------------------*/
+
+/*Only display: none;*/
+/*--------------------------------------------*/
+.UserProfile_plusLink__NhVsU {
+	display: none;
+}
+/*--------------------------------------------*/
+
+/*Spotify Music! II Support*/
+/*--------------------------------------------*/
+.NavbarDesktop_root__scYzp,
+.Spotify_Screen,
+.SM_Title_Container,
+.Artist_Info_Container,
+.GPT_Info_Container {
+    background: #000;
+}
+
+.SM_Artist {
+    color: #fff;
+}
+
+.SM_Title_Container {
+    box-shadow: 0 5px 20px #000;
+}
+/*--------------------------------------------*/

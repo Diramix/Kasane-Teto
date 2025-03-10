@@ -1,0 +1,57 @@
+@keyframes flash {
+    0% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+html::after {
+    animation: flash 6.5s linear;
+    position: fixed;
+    content: "";
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+    will-change: opacity;
+}
+
+.DefaultLayout_root_applicationPreserveTitleBar__ygJtq {
+    background: url("http://127.0.0.1:2007/assets/main-goida.gif") no-repeat center / cover;
+}
+
+:root {
+    --text-hovered-color: #fff;
+    --main-color: #00000070;
+    --light-main-color: #00000070;
+    --basic-color: #00000000;
+    --hatsune-light: #00000070;
+    --font-color: #ffffff;
+    --miku-color: #00000070;
+}
+
+[aria-label="Главное меню"] * {
+    color: #fff;
+}
+
+.NavbarDesktopUserWidget_userProfileContainer__ha3Tm {
+    visibility: visible;
+}
+
+.NavbarDesktop_logo__Z4jGx * .frsl0v3Y0m7IvVEtEnT8 {
+    background: 0;
+}
+
+.ym-light-theme,
+.ym-dark-theme {
+    --ym-background-color-primary-enabled-content: 0;
+}

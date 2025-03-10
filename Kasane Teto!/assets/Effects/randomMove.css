@@ -1,0 +1,66 @@
+@keyframes randomMove {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(1) scaleX(1);
+        background-color: red;
+    }
+
+    10% {
+        transform: translate(100px, -100px) rotate(30deg) scale(1.2) scaleX(-1);
+        background-color: blue;
+    }
+
+    15% {
+        transform: translate(-50px, 200px) rotate(60deg) scale(1.4) scaleX(1);
+        background-color: green;
+    }
+
+    20% {
+        transform: translate(-200px, -150px) rotate(45deg) scale(0.8) scaleX(-1);
+        background-color: yellow;
+    }
+
+    30% {
+        transform: translate(300px, 100px) rotate(-90deg) scale(1.6) scaleX(1);
+        background-color: purple;
+    }
+
+    40% {
+        transform: translate(-150px, 250px) rotate(120deg) scale(1) scaleX(-1);
+        background-color: orange;
+    }
+
+    50% {
+        transform: translate(50px, -300px) rotate(180deg) scale(0.5) scaleX(1);
+        background-color: pink;
+    }
+
+    60% {
+        transform: translate(250px, 200px) rotate(-45deg) scale(1.3) scaleX(-1);
+        background-color: cyan;
+    }
+
+    70% {
+        transform: translate(-100px, 50px) rotate(270deg) scale(2) scaleX(1);
+        background-color: teal;
+    }
+
+    80% {
+        transform: translate(0, 0) rotate(0deg) scale(1) scaleX(1);
+        background-color: red;
+    }
+
+    90% {
+        transform: translate(100px, -50px) rotate(150deg) scale(0.7) scaleX(-1);
+        background-color: magenta;
+    }
+
+    100% {
+        transform: translate(-300px, 300px) rotate(360deg) scale(1.5) scaleX(1);
+        background-color: lime;
+    }
+}
+
+body {
+    animation: randomMove cubic-bezier(0.6, 0.04, 0.98, 0.335) infinite alternate;
+    animation-timing-function: ease-in-out;
+}

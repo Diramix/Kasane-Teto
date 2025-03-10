@@ -1,0 +1,52 @@
+[
+    {
+        "track": {
+            "title": "You Spin Me Round",
+            "artist": "Caffeine",
+            "times": [
+                { "tc": "00:52", "tcend": "01:06", "cssFile": "spin" },
+                { "tc": "01:36", "tcend": "01:50", "cssFile": "spin" },
+                { "tc": "02:12", "tcend": "02:27", "cssFile": "spin" },
+                { "tc": "02:27", "tcend": "02:42", "cssFile": "fastSpin" }
+            ]
+        }
+    },
+    {
+        "track": {
+            "title": "Пение ангелов",
+            "artist": "Larisa",
+            "times": [
+                { "tc": "00:00", "tcend": "02:53", "cssFile": "angel" }
+            ]
+        }
+    },
+    {
+        "track": {
+            "title": "Народный гимн пользователей PulseSync",
+            "artist": "Добрый человек",
+            "times": [
+                { "tc": "00:00", "tcend": "03:32", "cssFile": "rickroll" }
+            ]
+        }
+    },
+    {
+        "track": {
+            "title": "The Vampire",
+            "artist": "Rachie",
+            "times": [
+                { "tc": "00:00", "tcend": "00:48", "cssFile": "vampire-red" },
+                { "tc": "00:48", "tcend": "00:57", "cssFile": "vampire-dark" },
+                { "tc": "00:57", "tcend": "03:01", "cssFile": "vampire-red" }
+            ]
+        }
+    },
+    {
+        "track": {
+            "title": "Государственный гимн Российской Федерации",
+            "artist": "Гимны",
+            "times": [
+                { "tc": "00:00", "tcend": "03:51", "cssFile": "flash-and-goida" }
+            ]
+        }
+    }
+]

@@ -1,0 +1,17 @@
+html {
+    animation: angel 172s infinite;
+}
+
+@keyframes angel {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+        filter: saturate(1);
+    }
+
+    100% {
+        transform: translateY(-600px) scale(0);
+        opacity: 0;
+        filter: saturate(0);
+    }
+}

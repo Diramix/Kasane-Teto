@@ -1,6 +1,6 @@
 ![image](https://i.imgur.com/IgPBFqU.png)
 
-# Vocaloid Miku!
+# Kasane Teto!
 
 ## Ссылки
 **Boosty:** https://boosty.to/diramix
