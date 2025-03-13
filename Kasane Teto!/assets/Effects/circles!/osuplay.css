@@ -1,0 +1,31 @@
+@keyframes flash {
+    0% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+html::after {
+    animation: flash 3.5s linear;
+    position: fixed;
+    content: "";
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: black no-repeat center center;
+    background-size: cover;
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+    will-change: opacity;
+}
+
+.osuplay {
+	display: block;
+}

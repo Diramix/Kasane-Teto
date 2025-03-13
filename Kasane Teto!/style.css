@@ -37,7 +37,7 @@
 	--basic-color: #854462;
 	--hatsune-light: #0b0c0c;
 	--font-color: #2A2433;
-	--miku-color: #e12885;
+	--miku-color: #D46A83;
 }
 
 .ym-light-theme,
@@ -89,6 +89,7 @@
 .TitleBar_button__9MptL {
 	z-index: 9999;
 	height: 42px;
+	--title-bar-close-button-color: #2B957C;
 }
 /*--------------------------------------------*/
 
@@ -1495,3 +1496,17 @@ div.PlayerBarDesktop_meta__6sm58 > div > span {
 html {
     animation: slideLoop 1s ease-out, slideLoopContinue 1s ease-in 1s;
 } */
+
+/*osuplay*/
+/*--------------------------------------------*/
+.osuplay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: calc(100vh - 90px);
+	bottom: 90px;
+	z-index: 400;
+	display: none;
+}
+/*--------------------------------------------*/

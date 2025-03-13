@@ -1,0 +1,43 @@
+html::before {
+    content: "";
+    position: fixed;
+    top: 100%;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    mix-blend-mode: difference;
+    pointer-events: none;
+    animation: invertAnimation 1s ease-out forwards;
+    z-index: 9999;
+}
+
+:root {
+	--main-color: #000;
+	--light-main-color: #FF9FC4;
+	--basic-color: #000;
+	--hatsune-light: #0b0c0c;
+	--font-color: #fff;
+	--miku-color: #fff;
+}
+
+@keyframes invertAnimation {
+    from {
+        top: 100%;
+    }
+    to {
+        top: 0;
+    }
+}
+
+html {
+	filter: saturate(0);
+}
+
+.NavbarDesktop_logo__Z4jGx * .frsl0v3Y0m7IvVEtEnT8 {
+    background: 0;
+}
+
+.AssetsImages:after {
+    display: none !important;
+}

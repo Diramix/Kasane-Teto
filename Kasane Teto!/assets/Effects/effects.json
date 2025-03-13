@@ -22,7 +22,7 @@
     },
     {
         "track": {
-            "title": "Народный гимн пользователей PulseSync",
+            "title": "Never Gonna Give You Up",
             "artist": "Добрый человек",
             "times": [
                 { "tc": "00:00", "tcend": "03:32", "cssFile": "rickroll" }
@@ -46,6 +46,44 @@
             "artist": "Гимны",
             "times": [
                 { "tc": "00:00", "tcend": "03:51", "cssFile": "flash-and-goida" }
+            ]
+        }
+    },
+    {
+        "track": {
+            "title": "circles!",
+            "artist": "nekodex",
+            "times": [
+                { "tc": "00:00", "tcend": "02:20", "cssFile": "osuplay", "iframe": "osuplay" }
+            ]
+        }
+    },
+    {
+        "track": {
+            "title": "Плохое яблоко",
+            "artist": "The Game Music Committee",
+            "times": [
+                { "tc": "00:00", "tcend": "00:14", "cssFile": "dark-apple" },
+                { "tc": "00:14", "tcend": "00:27", "cssFile": "light-apple" },
+                { "tc": "00:27", "tcend": "00:42", "cssFile": "dark-apple" },
+                { "tc": "00:42", "tcend": "00:56", "cssFile": "light-apple" },
+                { "tc": "00:56", "tcend": "00:58", "cssFile": "dark-apple" },
+                { "tc": "00:58", "tcend": "01:18", "cssFile": "light-apple" },
+                { "tc": "01:18", "tcend": "01:23", "cssFile": "mirror-apple" },
+                { "tc": "01:23", "tcend": "01:32", "cssFile": "light-apple" },
+                { "tc": "01:32", "tcend": "01:33", "cssFile": "dark-apple" },
+                { "tc": "01:33", "tcend": "01:34", "cssFile": "mirror-apple" },
+                { "tc": "01:34", "tcend": "01:50", "cssFile": "light-apple" },
+                { "tc": "01:50", "tcend": "02:01", "cssFile": "dark-apple" },
+                { "tc": "02:01", "tcend": "02:02", "cssFile": "light-apple" },
+                { "tc": "02:02", "tcend": "02:03", "cssFile": "dark-apple" },
+                { "tc": "02:03", "tcend": "02:06", "cssFile": "light-apple" },
+                { "tc": "02:06", "tcend": "02:22", "cssFile": "dark-apple" },
+                { "tc": "02:22", "tcend": "02:35", "cssFile": "light-apple" },
+                { "tc": "02:35", "tcend": "03:00", "cssFile": "dark-apple" },
+                { "tc": "03:00", "tcend": "03:24", "cssFile": "slide-apple" },
+                { "tc": "03:24", "tcend": "03:27", "cssFile": "dark-apple" },
+                { "tc": "03:27", "tcend": "03:30", "cssFile": "end-apple" }
             ]
         }
     }

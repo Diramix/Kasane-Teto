@@ -426,13 +426,15 @@ autoReplaceText();
 /*--------------------------------------------*/
 document.addEventListener('click', function(event) {
     const actions = [
+        // Эквалайзер
         {
             selector: '[aria-label="Выключить эквалайзер"]',
             url: 'https://www.youtube.com/watch?v=b3tTC_TkLyE'
         },
+        // Гифка
         {
             selector: '.ReleaseNotesModal_modalHeader__gp9SA',
-            url: 'https://www.youtube.com/watch?v=UFQ36_fOMcE'
+            url: 'https://www.youtube.com/watch?v=BIkPw5pOp4Y'
         }
     ];
 
@@ -500,3 +502,9 @@ async function applyStyle(cssUrl, cssFile) {
     } catch (error) {}
 }
 /*--------------------------------------------*/
+
+const iframe = document.createElement('iframe');
+iframe.src = "https://webosu.online/";
+iframe.className = "osuplay";
+iframe.style.border = "none";
+document.body.appendChild(iframe);

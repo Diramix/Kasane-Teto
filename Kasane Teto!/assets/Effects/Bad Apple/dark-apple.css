@@ -1,0 +1,20 @@
+:root {
+	--main-color: #fff;
+	--light-main-color: #FF9FC4;
+	--basic-color: #000;
+	--hatsune-light: #0b0c0c;
+	--font-color: #000;
+	--miku-color: #fff;
+}
+
+html {
+	filter: saturate(0) invert(100%);
+}
+
+.NavbarDesktop_logo__Z4jGx * .frsl0v3Y0m7IvVEtEnT8 {
+    background: 0;
+}
+
+.AssetsImages:after {
+    display: none !important;
+}

@@ -44,14 +44,13 @@ html::after {
 }
 
 .NavbarDesktopUserWidget_userProfileContainer__ha3Tm {
-    visibility: visible;
+    visibility: hidden;
 }
 
 .NavbarDesktop_logo__Z4jGx * .frsl0v3Y0m7IvVEtEnT8 {
     background: 0;
 }
 
-.ym-light-theme,
-.ym-dark-theme {
-    --ym-background-color-primary-enabled-content: 0;
+.AssetsImages:after {
+    display: none !important;
 }
