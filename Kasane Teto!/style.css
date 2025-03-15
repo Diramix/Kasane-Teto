@@ -1510,3 +1510,13 @@ html {
 	display: none;
 }
 /*--------------------------------------------*/
+
+/* additional-image-element */
+/*--------------------------------------------*/
+.additional-image-element:hover {
+    background: url("http://127.0.0.1:2007/assets/Cursed.png") !important;
+    background-repeat: no-repeat !important;
+    background-position: right bottom !important;
+    background-size: contain !important;
+}
+/*--------------------------------------------*/
