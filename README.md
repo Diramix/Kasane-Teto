@@ -32,7 +32,7 @@
 5. Всё!
 
 ## Сриншоты
-![2](https://github.com/user-attachments/assets/7e81b89c-4c30-4b53-9a82-69d67467f37b)
+![2](https://github.com/user-attachments/assets/770de476-3c5a-4738-a79a-de86e3cec538)
 ![3](https://github.com/user-attachments/assets/c8aa6337-56f3-4330-a56f-7560e77458aa)
 ![4](https://github.com/user-attachments/assets/7a472546-1d45-419d-aec3-4db8ea510775)
 
