@@ -32,9 +32,9 @@
 5. Всё!
 
 ## Сриншоты
-![2](https://github.com/user-attachments/assets/7e81b89c-4c30-4b53-9a82-69d67467f37b)
-![3](https://github.com/user-attachments/assets/c8aa6337-56f3-4330-a56f-7560e77458aa)
-![4](https://github.com/user-attachments/assets/7a472546-1d45-419d-aec3-4db8ea510775)
+![2](https://github.com/user-attachments/assets/770de476-3c5a-4738-a79a-de86e3cec538)
+![3](https://github.com/user-attachments/assets/74a6a404-d2be-48e0-8d6d-922c81e7fb4b)
+![4](https://github.com/user-attachments/assets/cfbc3b2d-bb4e-408a-90d2-9d3e2d973de0)
 
 ## Контакты
 ### Discord сервер где вы можете связаться с автором темы.
