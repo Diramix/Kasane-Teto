@@ -503,8 +503,31 @@ async function applyStyle(cssUrl, cssFile) {
 }
 /*--------------------------------------------*/
 
+// webosu
+/*--------------------------------------------*/
 const iframe = document.createElement('iframe');
 iframe.src = "https://webosu.online/";
 iframe.className = "osuplay";
 iframe.style.border = "none";
 document.body.appendChild(iframe);
+/*--------------------------------------------*/
+
+// Achtung Alert
+/*--------------------------------------------*/
+fetch('http://127.0.0.1:2007/assets/Alert.html')
+    .then(response => response.text())
+    .then(html => {
+        const background = document.createElement('div');
+        background.classList.add('notification_background');
+        background.innerHTML = html;
+
+        const button = background.querySelector('.notification_ok_button');
+        button.onclick = function() {
+            background.style.transition = 'opacity 0.5s ease';
+            background.style.opacity = '0';
+            setTimeout(() => background.remove(), 500);
+        };
+
+        document.body.appendChild(background);
+    });
+/*--------------------------------------------*/
