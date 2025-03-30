@@ -54,3 +54,30 @@ html::after {
 .AssetsImages:after {
     display: none !important;
 }
+
+.DevPanel_panel__LnoO2 *,
+.DevPanel_root__Gu7qn *,
+.VibeSettings_toggleSettingsButton__j6fIU *,
+.LikesAndHistory_historyIconContainer__KPPbS *,
+.MainPage_beta_withReleaseNotes__WOjUk,
+.PageHeaderBase_content___DNyv *,
+.InnerHeader_header__jZgxn *,
+.SearchPlaylistInput_root__o14iM *,
+.VibeSettings_root__ufZlV * {
+	color: #fff !important;
+}
+
+.VibeButton_button__tXFAm,
+.NeuromusicButton_button__kT4GN,
+.MixCard_root__9tPLV {
+	border-radius: 10px;
+	background: #0005;
+}
+
+.VibeButton_button__tXFAm:hover,
+.NeuromusicButton_button__kT4GN:hover,
+.MixCard_root__9tPLV:hover {
+	border-radius: 10px;
+	background: #0006;
+	filter: brightness(1.2);
+}

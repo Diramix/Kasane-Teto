@@ -6,6 +6,7 @@ setInterval(() => {
     coverAndAssetsImagesElements();
     updateText();
     enchancedTracks();
+    updateListeners();
 }, 300);
 /*--------------------------------------------*/
 
@@ -462,29 +463,32 @@ async function enchancedTracks() {
     const artistName = document.querySelector('section.PlayerBar_root__cXUnU * [data-test-id="SEPARATED_ARTIST_TITLE"]')?.textContent.trim();
     const currentTimecode = document.querySelector('section.PlayerBar_root__cXUnU * [data-test-id="TIMECODE_TIME_START"]')?.textContent.trim();
 
-    const activeStyles = new Set();
+    const activeStyles = new Map();
 
     trackData.forEach(({ track }) => {
         const { title, artist, times } = track;
         if (artistName === artist && trackName === title) {
             times.forEach(({ tc, tcend, cssFile }) => {
-                const cssUrl = `http://127.0.0.1:2007/assets/${cssFile}.css`;
                 if (currentTimecode >= tc && currentTimecode < tcend) {
-                    activeStyles.add(cssFile);
-                    if (tc === "00:00" && !document.querySelector('section.PlayerBar_root__cXUnU * [data-test-id="PAUSE_BUTTON"]')) {
-                        return; // Не применяем стиль, если нет кнопки паузы
-                    }
-                    if (!document.querySelector(`style[data-css-file="${cssFile}"]`)) {
-                        applyStyle(cssUrl, cssFile);
-                    }
+                    activeStyles.set(cssFile, `http://127.0.0.1:2007/assets/${cssFile}.css`);
                 }
             });
         }
     });
 
     document.querySelectorAll("style[data-css-file]").forEach(styleElement => {
-        if (!activeStyles.has(styleElement.getAttribute("data-css-file"))) {
-            styleElement.remove();
+        const cssFile = styleElement.getAttribute("data-css-file");
+        if (!activeStyles.has(cssFile)) {
+            styleElement.disabled = true;
+        }
+    });
+
+    activeStyles.forEach((url, cssFile) => {
+        let styleElement = document.querySelector(`style[data-css-file="${cssFile}"]`);
+        if (!styleElement) {
+            applyStyle(url, cssFile);
+        } else {
+            styleElement.disabled = false;
         }
     });
 }
@@ -495,7 +499,7 @@ async function applyStyle(cssUrl, cssFile) {
         if (!response.ok) throw new Error("Failed to load CSS");
         const cssText = await response.text();
 
-        const styleElement = document.createElement('style');
+        let styleElement = document.createElement('style');
         styleElement.textContent = cssText;
         styleElement.setAttribute('data-css-file', cssFile);
         document.head.appendChild(styleElement);
@@ -530,4 +534,70 @@ fetch('http://127.0.0.1:2007/assets/Alert.html')
 
         document.body.appendChild(background);
     });
+/*--------------------------------------------*/
+
+// Вроде "Семьдесят четыре трека" правильно
+/*--------------------------------------------*/
+function numberToWords(num) {
+    const ones = ['', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять'];
+    const teens = ['десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семьнадцать', 'восемнадцать', 'девятнадцать'];
+    const tens = ['', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'];
+    const hundreds = ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'];
+    const thousands = ['тысяча', 'тысячи', 'тысяч'];
+    const millions = ['миллион', 'миллиона', 'миллионов'];
+
+    function getThousandsWord(num) {
+        if (num % 10 === 1 && num % 100 !== 11) return thousands[0];
+        if ([2, 3, 4].includes(num % 10) && ![12, 13, 14].includes(num % 100)) return thousands[1];
+        return thousands[2];
+    }
+
+    function getMillionsWord(num) {
+        if (num % 10 === 1 && num % 100 !== 11) return millions[0];
+        if ([2, 3, 4].includes(num % 10) && ![12, 13, 14].includes(num % 100)) return millions[1];
+        return millions[2];
+    }
+
+    if (num < 10) return ones[num];
+    if (num < 20) return teens[num - 10];
+    if (num < 100) return `${tens[Math.floor(num / 10)]} ${ones[num % 10]}`.trim();
+    if (num < 1000) return `${hundreds[Math.floor(num / 100)]} ${numberToWords(num % 100)}`.trim();
+
+    if (num < 10000) {
+        let thousandPart = Math.floor(num / 1000);
+        let remainder = num % 1000;
+        let thousandWord = getThousandsWord(thousandPart);
+        let thousandText = (thousandPart === 1) ? 'одна' : (thousandPart === 2) ? 'две' : ones[thousandPart];
+        return `${thousandText} ${thousandWord} ${numberToWords(remainder)}`.trim();
+    }
+
+    if (num < 1000000) {
+        let millionPart = Math.floor(num / 1000);
+        let remainder = num % 1000;
+        return `${numberToWords(millionPart)} ${getThousandsWord(millionPart)} ${numberToWords(remainder)}`.trim();
+    }
+
+    if (num < 1000000000) {
+        let millionPart = Math.floor(num / 1000000);
+        let remainder = num % 1000000;
+        return `${numberToWords(millionPart)} ${getMillionsWord(millionPart)} ${numberToWords(remainder)}`.trim();
+    }
+
+    return num.toLocaleString('ru-RU');
+}
+
+function capitalizeFirstLetter(text) {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+function updateListeners() {
+    const element = document.querySelector('[data-test-id="ARTIST_LISTENERS_COUNT"] > span');
+    if (element) {
+        const match = element.textContent.match(/\d+/g);
+        if (match) {
+            const number = parseInt(match.join(''));
+            element.textContent = capitalizeFirstLetter(`${numberToWords(number)} слушателей в месяц`);
+        }
+    }
+}
 /*--------------------------------------------*/
