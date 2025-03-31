@@ -6,6 +6,14 @@
     
 # Kasane Teto!
 
+# Teto's Mento's Playlist
+Треки в этом плейлисте станут в 1000 раз лучше с темой Kasane Teto
+<p>
+    <a href="https://music.yandex.ru/users/diramix296/playlists/1017">
+      <img width="300" alt="ᓚᘏᗢ котик ждёт твоей монетки" src="https://github.com/Diramix/Kasane-Teto/blob/main/doc/Tetos-Mentos-Playlist.png?raw=true">
+    </a>
+</p>
+
 ## Стол контента
 - [Ссылки](#Ссылки)
 - [Установка](#Установка)
