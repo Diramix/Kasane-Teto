@@ -29,6 +29,29 @@
 }
 /*--------------------------------------------*/
 
+/* Курсор */
+/*--------------------------------------------*/
+/* Курсор для всего сайта */
+html, body {
+    cursor: url('http://127.0.0.1:2007/assets/Normal-Select.png'), auto;
+}
+
+/* Курсор для ссылок */
+a {
+    cursor: url('http://127.0.0.1:2007/assets/Link-Select.png'), pointer !important;
+}
+
+/* Курсор для кнопок */
+button {
+    cursor: url('http://127.0.0.1:2007/assets/Link-Select.png'), pointer !important;
+}
+
+/* Курсор для текстовых полей */
+input, textarea {
+    cursor: url('http://127.0.0.1:2007/assets/Text-Select.png') 13 13, text !important;
+}
+/*--------------------------------------------*/
+
 /*БАЗА*/
 /*--------------------------------------------*/
 :root {
@@ -1613,7 +1636,15 @@ html {
 }
 
 [id="ab_boosty"] {
-    background-color: #854462;
+    background-color: #D86B53;
+}
+
+[id="ab_discord"] {
+    background-color: #5865F2;
+}
+
+[id="ab_twitter"] {
+    background-color: #179CF0;
 }
 
 button:hover {
